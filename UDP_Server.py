@@ -41,7 +41,7 @@ def rdt_send(send_pkt, remote_address):
 # the function generate the transaction delay
 def network_delay():
     if True and random.choice(
-            [0, 1, 1]) == 1:  # Set to False to disable Network Delay. Default is 33% packets are delayed
+            [0, 0, 0, 0, 1, 0]) == 1:  # Set to False to disable Network Delay. Default is 33% packets are delayed
         time.sleep(.01)
         print("    Packet Delayed")
         return True
@@ -52,7 +52,7 @@ def network_delay():
 
 def network_loss():
     if True and random.choice(
-            [0, 1, 1, 0]) == 1:  # Set to False to disable Network Loss. Default is 50% packets are lost
+            [0, 0, 0, 0, 1, 0]) == 1:  # Set to False to disable Network Loss. Default is 50% packets are lost
         print("Packet Lost")
         return True
     else:
@@ -62,7 +62,7 @@ def network_loss():
 def packet_checksum_corrupter():
     error_msg = b'Corrupt!'
     if True and random.choice(
-            [0, 1, 0, 1]) == 1:  # Set to False to disable Packet Corruption. Default is 50% packets are corrupt
+            [0, 0, 0, 0, 1, 0]) == 1:  # Set to False to disable Packet Corruption. Default is 50% packets are corrupt
         print("Data Corrupt")
         return True
     else:
@@ -113,10 +113,16 @@ while True:
             ########################################
 
             ########################################
+            # 0. peace
+            # Remain and only remain this part, the server will run without any corrupt
+            # no_error_happened = False
+            ########################################
+
+            ########################################
             # 1. Delays
             # if you wanna make a delay, comment the second line; otherwise the first
             # 1
-            # no_error_happened = network_delay()
+            no_error_happened = network_delay()
             # 2
             # no_error_happened = False
             ########################################
